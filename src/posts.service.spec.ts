@@ -14,9 +14,28 @@ describe('PostsService', () => {
 
   it('should add a new post', () => {
     // реализуйте тест-кейс
+    const newPost =  postsService.create(post);
+
+    expect(newPost).toBeDefined();
+   
+    expect(newPost).toEqual(expect.objectContaining({
+      id: expect.any(String),
+      date: expect.any(String),
+      text: post.text
+    }))
+    
   });
 
   it('should find a post', () => {
     // реализуйте тест-кейс
+    const newPost =  postsService.create(post);
+    expect(newPost).toBeDefined();
+
+    const foundPost = postsService.find(newPost.id);
+
+    expect(foundPost).toBeDefined();
+    expect(foundPost?.id).toBe(newPost.id);
+    expect(foundPost?.text).toBe(newPost.text);
+    expect(foundPost?.date).toBe(newPost.date);
   });
 });
