@@ -28,4 +28,9 @@ export class PostsService {
   find(postId: string) {
     return this.posts.find(({ id }) => id === postId);
   }
+
+  findMany(options?: { limit?: number; skip?: number }) {
+    const { limit, skip } = options || {};
+    return this.posts.slice(skip || 0, (skip || 0) + (limit || this.posts.length));
+  }
 }
